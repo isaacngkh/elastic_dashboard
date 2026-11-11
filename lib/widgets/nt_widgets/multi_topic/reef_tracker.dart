@@ -115,7 +115,7 @@ List<ReefCircle> layoutReef(Size size) {
         ReefCircle(
           level,
           branch,
-          _branchPoint(size, branch, _levelDistance[level]),
+          _branchPoint(size, -branch, _levelDistance[level]),
           radius,
         ),
       );
