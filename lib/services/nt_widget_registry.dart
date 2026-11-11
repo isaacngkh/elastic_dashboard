@@ -32,6 +32,7 @@ import 'package:elastic_dashboard/widgets/nt_widgets/multi_topic/subsystem_widge
 import 'package:elastic_dashboard/widgets/nt_widgets/multi_topic/three_axis_accelerometer.dart';
 import 'package:elastic_dashboard/widgets/nt_widgets/multi_topic/ultrasonic.dart';
 import 'package:elastic_dashboard/widgets/nt_widgets/multi_topic/yagsl_swerve_drive.dart';
+import 'package:elastic_dashboard/widgets/nt_widgets/multi_topic/reef_tracker.dart';
 import 'package:elastic_dashboard/widgets/nt_widgets/nt_widget.dart';
 import 'package:elastic_dashboard/widgets/nt_widgets/single_topic/boolean_box.dart';
 import 'package:elastic_dashboard/widgets/nt_widgets/single_topic/graph.dart';
@@ -395,6 +396,18 @@ class NTWidgetRegistry {
       minHeight: _normalSize * 2,
       defaultWidth: 2,
       defaultHeight: 2,
+    );
+
+    registerMultiTopic(
+      name: ReefTracker.widgetType,
+      aliases: {'GamePieceScoredTracker'},
+      model: ReefTrackerModel.new,
+      widget: ReefTracker.new,
+      fromJson: ReefTrackerModel.fromJson,
+      minWidth: _normalSize * 3,
+      minHeight: _normalSize * 3,
+      defaultWidth: 3,
+      defaultHeight: 3,
     );
 
     registerWithoutModel(
