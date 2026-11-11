@@ -33,13 +33,18 @@ Offset _faceDirection(int branch) {
 }
 
 /// Position of [branch] at [distance] from center (fractions of reef radius).
-Offset _branchPoint(Size size, int branch, double distance) {
+Offset _branchPoint(
+  Size size,
+  int branch,
+  double distance, {
+  double offset = _branchOffset,
+}) {
   final Offset dir = _faceDirection(branch);
   final Offset perp = Offset(-dir.dy, dir.dx);
   final double side = branch % 2 == 0 ? 1.0 : -1.0;
   final Offset center = Offset(size.width / 2, size.height / 2);
   return center +
-      (dir * distance + perp * (side * _branchOffset)) * _reefRadius(size);
+      (dir * distance + perp * (side * offset)) * _reefRadius(size);
 }
 
 class ReefTrackerModel extends MultiTopicNTWidgetModel {
@@ -212,13 +217,18 @@ class ReefPainter extends CustomPainter {
           text: reefBranches[branch],
           style: TextStyle(
             color: Colors.white,
-            fontSize: 0.055 * r,
+            fontSize: 0.1 * r,
             fontWeight: FontWeight.bold,
           ),
         ),
         textDirection: TextDirection.ltr,
       )..layout();
-      final Offset p = _branchPoint(size, branch, _hexApothem - 0.04);
+      final Offset p = _branchPoint(
+        size,
+        -branch,
+        _hexApothem - 0.05,
+        offset: 0.06,
+      );
       text.paint(canvas, p - Offset(text.width / 2, text.height / 2));
     }
 
